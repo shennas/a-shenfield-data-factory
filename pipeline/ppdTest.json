@@ -22,7 +22,7 @@
 							"recursive": true,
 							"wildcardFolderPath": "@pipeline().parameters.filePath",
 							"wildcardFileName": {
-								"value": "@pipeline().parameters.fileNAme",
+								"value": "@pipeline().parameters.fileName",
 								"type": "Expression"
 							},
 							"enablePartitionDiscovery": false
