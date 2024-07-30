@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "PPDataFactoryAJS"
+		},
+		"ppd_lake_accountKey": {
+			"value": ""
+		},
+		"ppd_lake_properties_typeProperties_url": {
+			"value": "https://ppddatalake.dfs.core.windows.net/"
+		},
+		"trgTest_properties_ppdTest_parameters_fileName": {
+			"value": "@triggerBody().fileName"
+		},
+		"trgTest_properties_ppdTest_parameters_filePath": {
+			"value": "@triggerBody().folderPath"
+		},
+		"trgTest_properties_typeProperties_scope": {
+			"value": "/subscriptions/b2586655-8b7b-42af-aa3b-eb099ced9b9f/resourceGroups/PPD/providers/Microsoft.Storage/storageAccounts/ppddatalake"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
