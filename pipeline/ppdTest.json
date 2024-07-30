@@ -1,0 +1,14 @@
+{
+	"name": "ppdTest",
+	"properties": {
+		"parameters": {
+			"fileName": {
+				"type": "string"
+			},
+			"filePath": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}

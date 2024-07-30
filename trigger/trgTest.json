@@ -1,0 +1,28 @@
+{
+	"name": "trgTest",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ppdTest",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"fileName": "@triggerBody().fileName",
+					"filePath": "@triggerBody().folderPath"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/ppdgold/blobs/test/touch.txt",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/b2586655-8b7b-42af-aa3b-eb099ced9b9f/resourceGroups/PPD/providers/Microsoft.Storage/storageAccounts/ppddatalake",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
