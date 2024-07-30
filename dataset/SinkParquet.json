@@ -1,0 +1,21 @@
+{
+	"name": "SinkParquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ppd_lake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "dimension.parquet",
+				"folderPath": "Gold/test",
+				"fileSystem": "ppdgold"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
