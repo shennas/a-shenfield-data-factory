@@ -1,0 +1,9 @@
+{
+	"name": "PPDataFactoryAJS",
+	"location": "ukwest",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4585e75a-cc16-49af-97ab-25e4aee4336f",
+		"tenantId": "41eddeb2-498f-49d2-bfdd-b71bbce98ee9"
+	}
+}
