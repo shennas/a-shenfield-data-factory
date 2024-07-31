@@ -21,10 +21,13 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFolderPath": {
-								"value": "@pipeline().parameters.Folder",
+								"value": "@pipeline().parameters.srcFolder",
 								"type": "Expression"
 							},
-							"wildcardFileName": "*",
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.srcFile",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
