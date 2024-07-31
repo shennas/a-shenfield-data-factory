@@ -15,13 +15,13 @@
 			"type": "string",
 			"defaultValue": "https://ppddatalake.dfs.core.windows.net/"
 		},
-		"trgTest_properties_ppdTest_parameters_fileName": {
+		"trgTest_properties_copy_test_file_parameters_Container": {
 			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
+			"defaultValue": "@split(triggerBody().folderPath,'/')[0]"
 		},
-		"trgTest_properties_ppdTest_parameters_filePath": {
+		"trgTest_properties_copy_test_file_parameters_Folder": {
 			"type": "string",
-			"defaultValue": "@triggerBody().folderPath"
+			"defaultValue": "@split(triggerBody().folderPath,'/')[1]"
 		},
 		"trgTest_properties_typeProperties_scope": {
 			"type": "string",
@@ -102,13 +102,13 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ppdTest')]",
+			"name": "[concat(parameters('factoryName'), '/copy_test_file')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "cp_test",
+						"name": "Copy data1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -126,13 +126,10 @@
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
 									"wildcardFolderPath": {
-										"value": "@pipeline().parameters.filePath",
+										"value": "@pipeline().parameters.Folder",
 										"type": "Expression"
 									},
-									"wildcardFileName": {
-										"value": "@pipeline().parameters.fileName",
-										"type": "Expression"
-									},
+									"wildcardFileName": "*",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -179,10 +176,10 @@
 					"elapsedTimeMetric": {}
 				},
 				"parameters": {
-					"fileName": {
+					"Container": {
 						"type": "string"
 					},
-					"filePath": {
+					"Folder": {
 						"type": "string"
 					}
 				},
@@ -199,16 +196,16 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "ppdTest",
+							"referenceName": "copy_test_file",
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"fileName": "[parameters('trgTest_properties_ppdTest_parameters_fileName')]",
-							"filePath": "[parameters('trgTest_properties_ppdTest_parameters_filePath')]"
+							"Container": "[parameters('trgTest_properties_copy_test_file_parameters_Container')]",
+							"Folder": "[parameters('trgTest_properties_copy_test_file_parameters_Folder')]"
 						}
 					}
 				],
@@ -224,7 +221,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/ppdTest')]"
+				"[concat(variables('factoryId'), '/pipelines/copy_test_file')]"
 			]
 		}
 	]
