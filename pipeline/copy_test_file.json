@@ -66,10 +66,10 @@
 			}
 		],
 		"parameters": {
-			"Container": {
+			"srcFolder": {
 				"type": "string"
 			},
-			"Folder": {
+			"srcFile": {
 				"type": "string"
 			}
 		},
