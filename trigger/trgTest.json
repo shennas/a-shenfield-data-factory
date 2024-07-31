@@ -3,7 +3,18 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "copy_test_file",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Container": "@split(triggerBody().folderPath,'/')[0]",
+					"Folder": "@split(triggerBody().folderPath,'/')[1]"
+				}
+			}
+		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/ppdgold/blobs/test/",
