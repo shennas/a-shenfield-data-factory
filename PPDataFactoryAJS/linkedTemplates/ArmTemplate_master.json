@@ -15,13 +15,13 @@
 			"type": "string",
 			"defaultValue": "https://ppddatalake.dfs.core.windows.net/"
 		},
-		"trgTest_properties_copy_test_file_parameters_Container": {
+		"trgTest_properties_copy_test_file_parameters_srcFolder": {
 			"type": "string",
-			"defaultValue": "@split(triggerBody().folderPath,'/')[0]"
+			"defaultValue": "@triggerBody().folderPath"
 		},
-		"trgTest_properties_copy_test_file_parameters_Folder": {
+		"trgTest_properties_copy_test_file_parameters_srcFile": {
 			"type": "string",
-			"defaultValue": "@split(triggerBody().folderPath,'/')[1]"
+			"defaultValue": "@triggerBody().fileName"
 		},
 		"trgTest_properties_typeProperties_scope": {
 			"type": "string",
@@ -60,11 +60,11 @@
 					"ppd_lake_properties_typeProperties_url": {
 						"value": "[parameters('ppd_lake_properties_typeProperties_url')]"
 					},
-					"trgTest_properties_copy_test_file_parameters_Container": {
-						"value": "[parameters('trgTest_properties_copy_test_file_parameters_Container')]"
+					"trgTest_properties_copy_test_file_parameters_srcFolder": {
+						"value": "[parameters('trgTest_properties_copy_test_file_parameters_srcFolder')]"
 					},
-					"trgTest_properties_copy_test_file_parameters_Folder": {
-						"value": "[parameters('trgTest_properties_copy_test_file_parameters_Folder')]"
+					"trgTest_properties_copy_test_file_parameters_srcFile": {
+						"value": "[parameters('trgTest_properties_copy_test_file_parameters_srcFile')]"
 					},
 					"trgTest_properties_typeProperties_scope": {
 						"value": "[parameters('trgTest_properties_typeProperties_scope')]"

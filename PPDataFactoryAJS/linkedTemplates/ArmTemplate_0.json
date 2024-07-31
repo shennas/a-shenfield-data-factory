@@ -15,13 +15,13 @@
 			"type": "string",
 			"defaultValue": "https://ppddatalake.dfs.core.windows.net/"
 		},
-		"trgTest_properties_copy_test_file_parameters_Container": {
+		"trgTest_properties_copy_test_file_parameters_srcFolder": {
 			"type": "string",
-			"defaultValue": "@split(triggerBody().folderPath,'/')[0]"
+			"defaultValue": "@triggerBody().folderPath"
 		},
-		"trgTest_properties_copy_test_file_parameters_Folder": {
+		"trgTest_properties_copy_test_file_parameters_srcFile": {
 			"type": "string",
-			"defaultValue": "@split(triggerBody().folderPath,'/')[1]"
+			"defaultValue": "@triggerBody().fileName"
 		},
 		"trgTest_properties_typeProperties_scope": {
 			"type": "string",
@@ -126,10 +126,13 @@
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
 									"wildcardFolderPath": {
-										"value": "@pipeline().parameters.Folder",
+										"value": "@pipeline().parameters.srcFolder",
 										"type": "Expression"
 									},
-									"wildcardFileName": "*",
+									"wildcardFileName": {
+										"value": "@pipeline().parameters.srcFile",
+										"type": "Expression"
+									},
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -176,10 +179,10 @@
 					"elapsedTimeMetric": {}
 				},
 				"parameters": {
-					"Container": {
+					"srcFolder": {
 						"type": "string"
 					},
-					"Folder": {
+					"srcFile": {
 						"type": "string"
 					}
 				},
@@ -204,15 +207,15 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"Container": "[parameters('trgTest_properties_copy_test_file_parameters_Container')]",
-							"Folder": "[parameters('trgTest_properties_copy_test_file_parameters_Folder')]"
+							"srcFolder": "[parameters('trgTest_properties_copy_test_file_parameters_srcFolder')]",
+							"srcFile": "[parameters('trgTest_properties_copy_test_file_parameters_srcFile')]"
 						}
 					}
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
 					"blobPathBeginsWith": "/ppdgold/blobs/test/",
-					"blobPathEndsWith": ".txt",
+					"blobPathEndsWith": "test.txt",
 					"ignoreEmptyBlobs": false,
 					"scope": "[parameters('trgTest_properties_typeProperties_scope')]",
 					"events": [
