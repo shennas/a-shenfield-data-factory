@@ -49,7 +49,17 @@
 				"inputs": [
 					{
 						"referenceName": "SourceTxtPpd",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"srcFolder": {
+								"value": "@pipeline().parameters.srcFolder",
+								"type": "Expression"
+							},
+							"srcFile": {
+								"value": "@pipeline().parameters.srcFile",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
