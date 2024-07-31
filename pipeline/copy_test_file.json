@@ -1,0 +1,14 @@
+{
+	"name": "copy_test_file",
+	"properties": {
+		"parameters": {
+			"Container": {
+				"type": "string"
+			},
+			"Folder": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
