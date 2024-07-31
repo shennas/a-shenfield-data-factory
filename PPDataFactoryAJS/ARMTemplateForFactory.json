@@ -15,15 +15,15 @@
 			"type": "string",
 			"defaultValue": "https://ppddatalake.dfs.core.windows.net/"
 		},
-		"tg_test_properties_copy_test_file_parameters_srcFolder": {
+		"tg_trust_properties_copy_test_file_parameters_srcFolder": {
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath"
 		},
-		"tg_test_properties_copy_test_file_parameters_srcFile": {
+		"tg_trust_properties_copy_test_file_parameters_srcFile": {
 			"type": "string",
-			"defaultValue": "@@triggerBody().fileName"
+			"defaultValue": "@triggerBody().fileName"
 		},
-		"tg_test_properties_typeProperties_scope": {
+		"tg_trust_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b2586655-8b7b-42af-aa3b-eb099ced9b9f/resourceGroups/PPD/providers/Microsoft.Storage/storageAccounts/ppddatalake"
 		}
@@ -212,7 +212,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/tg_test')]",
+			"name": "[concat(parameters('factoryName'), '/tg_trust')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -225,17 +225,17 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"srcFolder": "[parameters('tg_test_properties_copy_test_file_parameters_srcFolder')]",
-							"srcFile": "[parameters('tg_test_properties_copy_test_file_parameters_srcFile')]"
+							"srcFolder": "[parameters('tg_trust_properties_copy_test_file_parameters_srcFolder')]",
+							"srcFile": "[parameters('tg_trust_properties_copy_test_file_parameters_srcFile')]"
 						}
 					}
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/ppdgold/blobs/",
+					"blobPathBeginsWith": "/ppdgold/blobs/Stage/",
 					"blobPathEndsWith": "test.txt",
 					"ignoreEmptyBlobs": false,
-					"scope": "[parameters('tg_test_properties_typeProperties_scope')]",
+					"scope": "[parameters('tg_trust_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
