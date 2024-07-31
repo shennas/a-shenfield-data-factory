@@ -8,6 +8,10 @@
 				"pipelineReference": {
 					"referenceName": "copy_test_file",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"srcFolder": "@triggerBody().folderPath",
+					"srcFile": "@triggerBody().fileName"
 				}
 			}
 		],
