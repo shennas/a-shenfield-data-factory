@@ -5,11 +5,27 @@
 			"referenceName": "ppd_lake",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"srcFolder": {
+				"type": "string"
+			},
+			"srcFile": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().srcFile",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().srcFolder",
+					"type": "Expression"
+				},
 				"fileSystem": "ppdgold"
 			},
 			"columnDelimiter": ",",
