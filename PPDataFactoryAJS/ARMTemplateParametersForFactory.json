@@ -11,13 +11,13 @@
 		"ppd_lake_properties_typeProperties_url": {
 			"value": "https://ppddatalake.dfs.core.windows.net/"
 		},
-		"trgTest_properties_copy_test_file_parameters_srcFolder": {
+		"trgTest1_properties_copy_test_file_parameters_srcFolder": {
 			"value": "@triggerBody().folderPath"
 		},
-		"trgTest_properties_copy_test_file_parameters_srcFile": {
+		"trgTest1_properties_copy_test_file_parameters_srcFile": {
 			"value": "@triggerBody().fileName"
 		},
-		"trgTest_properties_typeProperties_scope": {
+		"trgTest1_properties_typeProperties_scope": {
 			"value": "/subscriptions/b2586655-8b7b-42af-aa3b-eb099ced9b9f/resourceGroups/PPD/providers/Microsoft.Storage/storageAccounts/ppddatalake"
 		}
 	}
