@@ -60,7 +60,10 @@
 										"value": "@pipeline().parameters.filePath",
 										"type": "Expression"
 									},
-									"wildcardFileName": "*",
+									"wildcardFileName": {
+										"value": "@pipeline().parameters.fileName",
+										"type": "Expression"
+									},
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
