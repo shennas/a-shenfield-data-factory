@@ -15,15 +15,15 @@
 			"type": "string",
 			"defaultValue": "https://ppddatalake.dfs.core.windows.net/"
 		},
-		"trgTest1_properties_copy_test_file_parameters_srcFolder": {
+		"tg_test_properties_copy_test_file_parameters_srcFolder": {
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath"
 		},
-		"trgTest1_properties_copy_test_file_parameters_srcFile": {
+		"tg_test_properties_copy_test_file_parameters_srcFile": {
 			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
+			"defaultValue": "@@triggerBody().fileName"
 		},
-		"trgTest1_properties_typeProperties_scope": {
+		"tg_test_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b2586655-8b7b-42af-aa3b-eb099ced9b9f/resourceGroups/PPD/providers/Microsoft.Storage/storageAccounts/ppddatalake"
 		},
@@ -60,14 +60,14 @@
 					"ppd_lake_properties_typeProperties_url": {
 						"value": "[parameters('ppd_lake_properties_typeProperties_url')]"
 					},
-					"trgTest1_properties_copy_test_file_parameters_srcFolder": {
-						"value": "[parameters('trgTest1_properties_copy_test_file_parameters_srcFolder')]"
+					"tg_test_properties_copy_test_file_parameters_srcFolder": {
+						"value": "[parameters('tg_test_properties_copy_test_file_parameters_srcFolder')]"
 					},
-					"trgTest1_properties_copy_test_file_parameters_srcFile": {
-						"value": "[parameters('trgTest1_properties_copy_test_file_parameters_srcFile')]"
+					"tg_test_properties_copy_test_file_parameters_srcFile": {
+						"value": "[parameters('tg_test_properties_copy_test_file_parameters_srcFile')]"
 					},
-					"trgTest1_properties_typeProperties_scope": {
-						"value": "[parameters('trgTest1_properties_typeProperties_scope')]"
+					"tg_test_properties_typeProperties_scope": {
+						"value": "[parameters('tg_test_properties_typeProperties_scope')]"
 					}
 				}
 			},

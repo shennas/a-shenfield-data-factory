@@ -15,15 +15,15 @@
 			"type": "string",
 			"defaultValue": "https://ppddatalake.dfs.core.windows.net/"
 		},
-		"trgTest1_properties_copy_test_file_parameters_srcFolder": {
+		"tg_test_properties_copy_test_file_parameters_srcFolder": {
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath"
 		},
-		"trgTest1_properties_copy_test_file_parameters_srcFile": {
+		"tg_test_properties_copy_test_file_parameters_srcFile": {
 			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
+			"defaultValue": "@@triggerBody().fileName"
 		},
-		"trgTest1_properties_typeProperties_scope": {
+		"tg_test_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b2586655-8b7b-42af-aa3b-eb099ced9b9f/resourceGroups/PPD/providers/Microsoft.Storage/storageAccounts/ppddatalake"
 		}
@@ -84,11 +84,27 @@
 					"referenceName": "ppd_lake",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"srcFolder": {
+						"type": "string"
+					},
+					"srcFile": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().srcFile",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().srcFolder",
+							"type": "Expression"
+						},
 						"fileSystem": "ppdgold"
 					},
 					"columnDelimiter": ",",
@@ -126,14 +142,6 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"wildcardFolderPath": {
-										"value": "@pipeline().parameters.srcFolder",
-										"type": "Expression"
-									},
-									"wildcardFileName": {
-										"value": "@pipeline().parameters.srcFile",
-										"type": "Expression"
-									},
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -164,7 +172,16 @@
 							{
 								"referenceName": "SourceTxtPpd",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"srcFolder": {
+										"value": "@pipeline().parameters.srcFolder",
+										"type": "Expression"
+									},
+									"srcFile": {
+										"value": "@pipeline().parameters.srcFile",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
@@ -195,12 +212,12 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trgTest1')]",
+			"name": "[concat(parameters('factoryName'), '/tg_test')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -208,17 +225,17 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"srcFolder": "[parameters('trgTest1_properties_copy_test_file_parameters_srcFolder')]",
-							"srcFile": "[parameters('trgTest1_properties_copy_test_file_parameters_srcFile')]"
+							"srcFolder": "[parameters('tg_test_properties_copy_test_file_parameters_srcFolder')]",
+							"srcFile": "[parameters('tg_test_properties_copy_test_file_parameters_srcFile')]"
 						}
 					}
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/ppdgold/blobs/test/",
+					"blobPathBeginsWith": "/ppdgold/blobs/",
 					"blobPathEndsWith": "test.txt",
 					"ignoreEmptyBlobs": false,
-					"scope": "[parameters('trgTest1_properties_typeProperties_scope')]",
+					"scope": "[parameters('tg_test_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
